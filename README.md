@@ -1,4 +1,4 @@
-# RecipePicker_CSharp
+# Project III
 Recipe Picker is an application with recipes. An user can search,view and add an recipe.
 I will implement two roles for my application:
 #### I. User role
