@@ -86,10 +86,5 @@ namespace recipePickerApp.Controllers
         {
             return View();
         }
-
-        public IActionResult Popular_recipe()
-        {
-            return View();
-        }
     }
 }
