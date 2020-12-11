@@ -110,54 +110,9 @@
                             alert("Adaugat cu succes");
                         }
     </script>
-    <a  class="btn" asp-controller="User" asp-action="AddFavoriteRecipes" asp-route-recipeId="@Model.recipe.RecipeId"> +Adauga la FAVORITE</a>
+    <a  class="btn" > +Adauga la FAVORITE</a>
 
-    <a class="btn"  asp-controller="User" asp-action="AddCookedRecipes" asp-route-recipeId="@Model.recipe.RecipeId">+Adauga la Retete GATITE</a>
+    <a class="btn" >+Adauga la Retete GATITE</a>
 
-    @*<p></p>
-    <p></p>
-    <hr style="border:3px solid blueviolet">
-    <h2>Review-uri utilizatori</h2>
-    <div class="row bootstrap snippets">
-        <div class="col-md-6 col-md-offset-2 col-sm-12">
-            <div class="comment-wrapper">
-                <div class="panel panel-info">
-                    <div class="panel-body">
-                        <hr>
-                        @foreach (var item2 in Model.reviews)
-                        {
-                            <ul class="media-list">
-
-                                <li class="media">
-                                    <a href="#" class="pull-left">
-                                        <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
-                                    </a>
-                                    <div class="media-body">
-
-                                        <span class="text-muted pull-right">
-                                            <small class="text-muted"> @Html.DisplayFor(model => item2.DateTime.Date)</small>
-                                        </span>
-
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star"></span>
-                                        <strong class="text-success"></strong>
-                                        <p>
-                                            @Html.DisplayFor(model => item2.Description)
-                                        </p>
-                                    </div>
-                                </li>
-
-                            </ul>
-                        }
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <hr style="border:3px solid blueviolet">
-    <a asp-controller="User" asp-action="AddReview" asp-route-recipeId=" @Html.DisplayFor(model => model.recipe.RecipeId)">Adauga un review</a>*@
 </body>
 </html>

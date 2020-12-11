@@ -19,7 +19,7 @@ namespace recipePickerApp.Repository
         public User findById(String Id)
         {
             
-            return UserContext.UserFavoriteRecepies
+            return UserContext.Users
                 .Where(user => user.Id== Id)
                 .SingleOrDefault();
         }

@@ -13,8 +13,6 @@ namespace recipePickerApp.Service
 
         Recipe AddRecipe(Recipe recipe);
 
-        ICollection<Review> getReviewsForRecipe(long id);
-
         ICollection<Ingredient> getIngredientsForRecipe(long id);
 
         ICollection<Recipe> GetRecipesByCategory(string category);

@@ -27,6 +27,11 @@ namespace recipePickerApp.Controllers
             this.webHostEnvironment = webHostEnvironment;
         }
 
+        public IActionResult user_home()
+        {
+            var id = userManager.GetUserId(User);
+            return View(userService.getUserById(id));
+        }
 
         [HttpGet]
         public IActionResult UserOwnRecipes()
@@ -38,11 +43,6 @@ namespace recipePickerApp.Controllers
                 return View();
             }
             return View(model);
-        }
-
-        public IActionResult AddOwnRecipes()
-        {
-            return View();
         }
 
         [HttpPost]

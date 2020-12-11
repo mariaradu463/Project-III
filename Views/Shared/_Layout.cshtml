@@ -26,9 +26,14 @@
     </header>
 
     @RenderBody()
-    <footer>
-        <img src="~/images/cutlery.png" />
-    </footer>
+<footer>
+    <img src="~/images/cutlery.png" />
+    <nav>
+        <ul>
+            <li><a asp-controller="Admin" asp-action="Home">Admin</a></li>
+        </ul>
+    </nav>
+</footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
