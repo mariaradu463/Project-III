@@ -7,6 +7,7 @@ using recipePickerApp.Service;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace recipePickerApp.Controllers
 {
@@ -66,6 +67,85 @@ namespace recipePickerApp.Controllers
             }
 
             return RedirectToAction("UserOwnRecipes", "User");
+        }
+
+
+        [HttpGet]
+        public IActionResult UserFavoriteRecipes()
+        {
+            var id = userManager.GetUserId(User);
+            var model = userService.getRecipesForUser(id, "favorite");
+            return View(model);
+        }
+
+        public async Task<IActionResult> AddFavoriteRecipes(long recipeId)
+        {
+            var recipe = recipeService.GetRecipeById(recipeId);
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var newRecipe = new Recipe
+                    {
+                        Name = recipe.Name,
+                        Category = recipe.Category,
+                        CookingDecription = recipe.CookingDecription,
+                        CookingTime = recipe.CookingTime,
+                        Description = recipe.Description,
+                        ImageUrl = recipe.ImageUrl,
+                        RecipeIngredients = recipe.RecipeIngredients
+                    };
+                    newRecipe.UserId = userManager.GetUserId(User);
+                    newRecipe.RecipeType = RecipeType.favorite;
+                    userService.addRecipe(newRecipe);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return RedirectToAction("UserFavoriteRecipes", "User");
+        }
+
+        [HttpGet]
+        public IActionResult UserCookedRecipes()
+        {
+            var id = userManager.GetUserId(User);
+            IEnumerable<Recipe> model = userService.getRecipesForUser(id, "cooked");
+            return View(model);
+        }
+
+        public async Task<IActionResult> AddCookedRecipes(long recipeId)
+        {
+            var recipe = recipeService.GetRecipeById(recipeId);
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var newRecipe = new Recipe
+                    {
+                        Name = recipe.Name,
+                        Category = recipe.Category,
+                        CookingDecription = recipe.CookingDecription,
+                        CookingTime = recipe.CookingTime,
+                        Description = recipe.Description,
+                        ImageUrl = recipe.ImageUrl,
+                        RecipeIngredients = recipe.RecipeIngredients,
+                    };
+                    newRecipe.UserId = userManager.GetUserId(User);
+                    newRecipe.RecipeType = RecipeType.cooked;
+                    userService.addRecipe(newRecipe);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return RedirectToAction("UserCookedRecipes", "User");
         }
 
     }

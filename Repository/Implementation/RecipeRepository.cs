@@ -48,5 +48,62 @@ namespace recipePickerApp.Repository
                  .Where(recipe => recipe.UserId.Equals(id) && (recipe.RecipeType.Equals(recipeType)))
                  .AsEnumerable();
         }
+
+        public IEnumerable<Recipe> GetFavoriteRecipesForUser(String Id)
+        {
+            RecipeType recipeType = RecipeType.favorite;
+            return userContext.Recipes
+                 .Where(recipe => recipe.UserId.Equals(Id) && (recipe.RecipeType.Equals(recipeType)))
+                 .AsEnumerable();
+        }
+
+        public IEnumerable<Recipe> GetCookedRecipesForUser(String Id)
+        {
+            RecipeType recipeType = RecipeType.cooked;
+            return userContext.Recipes
+                 .Where(recipe => recipe.UserId.Equals(Id) && (recipe.RecipeType.Equals(recipeType)))
+                 .AsEnumerable();
+        }
+
+        public void RemoveCookedRecipeFromUser(Recipe recipe, String userId)
+        {
+            ICollection<Recipe> cookedRecipes = userContext.UserCookedRecipes
+                 .Where(u => u.UserId.Equals(userId))
+                 .Select(p => p.recipe)
+                 .ToList();
+
+            cookedRecipes.Remove(recipe);
+            userContext.SaveChanges();
+        }
+
+        public void RemoveFavoriteRecipeFromUser(Recipe recipe, String userId)
+        {
+            ICollection<Recipe> favRecipes = userContext.UserFavoriteRecipes
+                 .Where(u => u.UserId.Equals(userId))
+                 .Select(p => p.recipe)
+                 .ToList();
+            favRecipes.Remove(recipe);
+            userContext.SaveChanges();
+
+        }
+
+        public ICollection<Recipe> FindByName(string name)
+        {
+            RecipeType recipeType = RecipeType.own;
+            ICollection<Recipe> recipes = userContext.Recipes
+                .Where(r => r.Name.Contains(name) && (r.RecipeType.Equals(recipeType)))
+                .ToList();
+            return recipes;
+        }
+
+        public ICollection<Recipe> FindByNameAndCategory(string category, string name)
+        {
+            Category category1 = (Category)System.Enum.Parse(typeof(Category), category);
+            RecipeType recipeType = RecipeType.own;
+            ICollection<Recipe> recipes = userContext.Recipes
+                .Where(r => r.Name.Contains(name) && ((r.Category.Equals(category1)) && (r.RecipeType.Equals(recipeType))))
+                .ToList();
+            return recipes;
+        }
     }
 }

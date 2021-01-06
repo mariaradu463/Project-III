@@ -21,7 +21,7 @@ namespace recipePickerApp.Service
 
         IQueryable<String> getAllCategoriesAsString();
         Recipe Update(Recipe recipe);
-
+        IEnumerable<Recipe> GetRecipesByCategoryAndName(string category, string name);
     }
 
 }

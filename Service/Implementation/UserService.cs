@@ -26,7 +26,17 @@ namespace recipePickerApp.Service.Implementation
         }
         public IEnumerable<Recipe> getRecipesForUser(String Id, string recipeType)
         {
-          return _repositoryWrapper.Recipe.GetOwnRecipesForUser(Id);
+            switch (recipeType)
+            {
+                case "favorite":
+                    return _repositoryWrapper.Recipe.GetFavoriteRecipesForUser(Id);
+
+                case "cooked":
+                    return _repositoryWrapper.Recipe.GetCookedRecipesForUser(Id);
+                default:
+                    return _repositoryWrapper.Recipe.GetOwnRecipesForUser(Id);
+
+            }
         }
         public Recipe addRecipe(Recipe recipe)
         {

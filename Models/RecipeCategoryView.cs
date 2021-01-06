@@ -8,5 +8,6 @@ namespace recipePickerApp.Models
         public List<Recipe> Recipes { get; set; }
         public SelectList Categories { get; set; }
         public string RecipeCategory { get; set; }
+        public string SearchString { get; set; }
     }
 }

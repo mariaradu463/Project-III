@@ -106,13 +106,13 @@
 
     </div>
     <script>
-                        function myFunction() {
-                            alert("Adaugat cu succes");
-                        }
+        function myFunction() {
+            alert("Adaugat cu succes");
+        }
     </script>
-    <a  class="btn" > +Adauga la FAVORITE</a>
+    <a class="btn" asp-controller="User" asp-action="AddFavoriteRecipes" asp-route-recipeId="@Model.recipe.RecipeId"> +Adauga la FAVORITE</a>
 
-    <a class="btn" >+Adauga la Retete GATITE</a>
+    <a class="btn" asp-controller="User" asp-action="AddCookedRecipes" asp-route-recipeId="@Model.recipe.RecipeId">+Adauga la Retete GATITE</a>
 
 </body>
 </html>

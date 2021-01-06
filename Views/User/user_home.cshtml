@@ -14,8 +14,8 @@
 
     <div class="vertical-menu">
         <a asp-controller="User" asp-action="user_home" class="active">Contul meu</a>
-        <a >Retete FAVORITE</a>
-        <a >Retete GATITE</a>
+        <a asp-controller="User" asp-action="UserFavoriteRecipes">Retete FAVORITE</a>
+        <a asp-controller="User" asp-action="UserCookedRecipes">Retete GATITE</a>
         <a asp-controller="User" asp-action="UserOwnRecipes">Retetele mele</a>
         <a asp-controller="User" asp-action="AddOwnRecipes">ADAUGA RETETA</a>
     </div>

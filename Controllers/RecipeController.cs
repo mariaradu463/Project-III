@@ -86,5 +86,20 @@ namespace recipePickerApp.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> SearchRecipes(string recipeCategory, string searchString)
+        {
+
+
+            var recipes = service.GetRecipesByCategoryAndName(recipeCategory, searchString);
+
+            var recipeCategoryView = new RecipeCategoryView
+            {
+                Categories = new SelectList(await service.getAllCategoriesAsString().Distinct().ToListAsync()),
+                Recipes = recipes.ToList()
+            };
+            return View(recipeCategoryView);
+        }
     }
 }

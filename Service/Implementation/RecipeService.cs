@@ -87,5 +87,26 @@ namespace recipePickerApp.Service.Implementation
         {
             return _repositoryWrapper.Recipe.Update(recipe);
         }
+
+        public IEnumerable<Recipe> GetRecipesByCategoryAndName(string category, string name)
+        {
+            if (category != null && name != null)
+            {
+                return _repositoryWrapper.Recipe.FindByNameAndCategory(category, name);
+            }
+            if (category == null && name == null)
+            {
+                return _repositoryWrapper.Recipe.GetAll();
+            }
+            if (category == null && name != null)
+            {
+                return _repositoryWrapper.Recipe.FindByName(name);
+            }
+            if (category != null && name == null)
+            {
+                return _repositoryWrapper.Recipe.FindByCategory(category);
+            }
+            return _repositoryWrapper.Recipe.FindAll();
+        }
     }
 }
